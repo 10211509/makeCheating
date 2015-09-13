@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MakeCheating</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_go_main">返回首页</string>
+    <string name="action_user_center">个人信息</string>
+    <string name="action_app_update">软件升级</string>
+    <string name="action_app_exit">退出软件</string>
+    <string name="action_about_us">关于我们</string>
+    <string name="title_activity_exam_paper">ExamPaperActivity</string>
 </resources>
