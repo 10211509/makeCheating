@@ -32,7 +32,9 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.afollestad:material-dialogs:0.7.8.1'
     compile 'com.tencent.bugly:crashreport:1.2.3.8'  //其中<version>替换为当前最新bugly版本号1.2.3.8
-    compile 'se.emilsjolander:stickylistheaders:2.7.0'}
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
+//    compile 'com.squareup.phrase:phrase:1.1.0'
+}
 
 
 bugly {

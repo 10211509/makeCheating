@@ -7,6 +7,7 @@ public class Question {
     private String title;
     private String type;
     private String answer;
+    private int section;
 
     public String getTitle() {
         return title;
@@ -30,5 +31,13 @@ public class Question {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public int getSection() {
+        return section;
+    }
+
+    public void setSection(int section) {
+        this.section = section;
     }
 }

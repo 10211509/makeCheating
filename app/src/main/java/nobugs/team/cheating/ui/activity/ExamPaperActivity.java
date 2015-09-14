@@ -13,6 +13,7 @@ import nobugs.team.cheating.mvp.model.Question;
 import nobugs.team.cheating.mvp.presenter.IPresenter;
 import nobugs.team.cheating.mvp.presenter.QuestionPresenter;
 import nobugs.team.cheating.mvp.presenter.impl.QuestionPresenterImpl;
+import nobugs.team.cheating.ui.adapter.QuestionListAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View {
@@ -39,7 +40,8 @@ public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implement
 
     @Override
     public void showData(List<Question> data) {
-
+        QuestionListAdapter questionListAdapter = new QuestionListAdapter(this,data);
+        listTestQuestions.setAdapter(questionListAdapter);
     }
 
     @Override
