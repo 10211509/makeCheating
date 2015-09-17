@@ -1,5 +1,6 @@
 package nobugs.team.cheating.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,6 +33,6 @@ public class ExamDetailsActivity extends BaseActivity<QuestionDetailPresenter> i
 
     @Override
     public void navigateToExamPaperActivity() {
-
+        startActivity(new Intent(this,ExamPaperActivity.class));
     }
 }
