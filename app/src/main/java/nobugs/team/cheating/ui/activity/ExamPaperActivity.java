@@ -1,6 +1,9 @@
 package nobugs.team.cheating.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,7 +19,7 @@ import nobugs.team.cheating.mvp.presenter.impl.QuestionPresenterImpl;
 import nobugs.team.cheating.ui.adapter.QuestionListAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View {
+public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View,AdapterView.OnItemClickListener {
 
 
     @Bind(R.id.tv_subject)
@@ -42,6 +45,7 @@ public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implement
     public void showData(List<Question> data) {
         QuestionListAdapter questionListAdapter = new QuestionListAdapter(this,data);
         listTestQuestions.setAdapter(questionListAdapter);
+        listTestQuestions.setOnItemClickListener(this);
     }
 
     @Override
@@ -52,5 +56,15 @@ public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implement
     @Override
     public void showNetworkError() {
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        getPresenter().navigateToExamDetails(position);
+    }
+
+    @Override
+    public void startExamDetailsActivity() {
+        startActivity(new Intent(this,ExamDetailsActivity.class));
     }
 }

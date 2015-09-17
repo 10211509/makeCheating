@@ -8,18 +8,30 @@ import android.widget.BaseAdapter;
 
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
+import nobugs.team.cheating.mvp.model.Question;
 import nobugs.team.cheating.mvp.presenter.QuestionDetailPresenter;
+import nobugs.team.cheating.mvp.presenter.impl.QuestionDetailPresenterImpl;
 
 public class ExamDetailsActivity extends BaseActivity<QuestionDetailPresenter> implements QuestionDetailPresenter.View{
 
 
     @Override
     protected QuestionDetailPresenter initPresenter() {
-        return null;
+        return new QuestionDetailPresenterImpl(this);
     }
 
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_exam_details;
+    }
+
+    @Override
+    public void showQuestionDetails(Question question) {
+
+    }
+
+    @Override
+    public void navigateToExamPaperActivity() {
+
     }
 }

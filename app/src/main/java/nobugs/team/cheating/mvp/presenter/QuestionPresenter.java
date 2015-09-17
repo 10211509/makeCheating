@@ -7,7 +7,8 @@ import nobugs.team.cheating.mvp.model.Question;
  */
 public interface QuestionPresenter extends IListViewPresenter {
 
+    void navigateToExamDetails(int position);
     interface View extends IListViewPresenter.View<Question> {
-
+        void startExamDetailsActivity();
     }
 }
