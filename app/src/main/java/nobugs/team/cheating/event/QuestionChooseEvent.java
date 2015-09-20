@@ -2,7 +2,7 @@ package nobugs.team.cheating.event;
 
 import java.util.List;
 
-import nobugs.team.cheating.mvp.model.Question;
+import nobugs.team.cheating.model.Question;
 
 /**
  * Created by xiayong on 2015/9/17.

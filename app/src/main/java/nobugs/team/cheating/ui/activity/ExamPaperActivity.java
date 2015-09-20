@@ -1,7 +1,8 @@
 package nobugs.team.cheating.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -9,27 +10,28 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
-import nobugs.team.cheating.mvp.model.Question;
-import nobugs.team.cheating.mvp.presenter.IPresenter;
-import nobugs.team.cheating.mvp.presenter.QuestionPresenter;
-import nobugs.team.cheating.mvp.presenter.impl.QuestionPresenterImpl;
+import nobugs.team.cheating.model.Question;
+import nobugs.team.cheating.presenter.QuestionPresenter;
+import nobugs.team.cheating.presenter.impl.QuestionPresenterImpl;
 import nobugs.team.cheating.ui.adapter.QuestionListAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View,AdapterView.OnItemClickListener {
-
+public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View, AdapterView.OnItemClickListener {
 
     @Bind(R.id.tv_subject)
     TextView tvSubject;
     @Bind(R.id.tv_time)
     TextView tvTime;
-    @Bind(R.id.tv_eaxm_order)
+    @Bind(R.id.tv_exam_order)
     TextView tvEaxmOrder;
-    @Bind(R.id.list_test_questions)
+    @Bind(R.id.lv_questions)
     StickyListHeadersListView listTestQuestions;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.tv_exam_title)
+    TextView tvExamTitle;
 
     @Override
     protected QuestionPresenter initPresenter() {
@@ -42,8 +44,29 @@ public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implement
     }
 
     @Override
+    protected void initView() {
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+//        ActionBar actionbar = getSupportActionBar();
+//        if (actionbar != null) {
+//            actionbar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP);
+//        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void showData(List<Question> data) {
-        QuestionListAdapter questionListAdapter = new QuestionListAdapter(this,data);
+        QuestionListAdapter questionListAdapter = new QuestionListAdapter(this, data);
         listTestQuestions.setAdapter(questionListAdapter);
         listTestQuestions.setOnItemClickListener(this);
     }
@@ -65,6 +88,7 @@ public class ExamPaperActivity extends BaseActivity<QuestionPresenter> implement
 
     @Override
     public void startExamDetailsActivity() {
-        startActivity(new Intent(this,ExamDetailsActivity.class));
+        startActivity(new Intent(this, ExamDetailsActivity.class));
     }
+
 }

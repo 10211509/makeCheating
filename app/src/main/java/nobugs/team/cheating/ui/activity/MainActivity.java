@@ -1,20 +1,27 @@
 package nobugs.team.cheating.ui.activity;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.MenuItem;
+import android.view.View;
 
 import java.util.List;
 
 import butterknife.Bind;
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
-import nobugs.team.cheating.mvp.model.Subject;
-import nobugs.team.cheating.mvp.presenter.SubjectPresenter;
-import nobugs.team.cheating.mvp.presenter.impl.SubjectPresenterImpl;
+import nobugs.team.cheating.model.Subject;
+import nobugs.team.cheating.presenter.SubjectPresenter;
+import nobugs.team.cheating.presenter.impl.SubjectPresenterImpl;
 import nobugs.team.cheating.ui.adapter.MainSubjectAdapter;
 
 public class MainActivity extends BaseActivity<SubjectPresenter> implements
@@ -22,15 +29,19 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
         SwipeRefreshLayout.OnRefreshListener,
         MainSubjectAdapter.OnItemClickListener {
 
-    @Bind(R.id.tool_bar_main)
-    Toolbar toolBarMain;
+    @Bind(R.id.toolbar)
+    Toolbar toolBar;
     @Bind(R.id.rv_main_subjects)
     RecyclerView rvMainSubjects;
     @Bind(R.id.srl_main_subjects)
     SwipeRefreshLayout srlMainSubjects;
-
+    @Bind(R.id.nv_main_navigation)
+    NavigationView nvMainNavigation;
+    @Bind(R.id.dl_main_drawer)
+    DrawerLayout dlMainDrawer;
 
     private MainSubjectAdapter mSubjectAdapter;
+    private long exitTime = 0;
 
     @Override
     protected SubjectPresenter initPresenter() {
@@ -44,8 +55,14 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
 
     @Override
     protected void initView() {
-        setSupportActionBar(toolBarMain);
+        initRecycler();
 
+        initToolbar();
+
+        initDrawer();
+    }
+
+    private void initRecycler() {
         // 这句话是为了，第一次进入页面的时候显示加载进度条
         srlMainSubjects.setProgressViewOffset(false, 0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
 
@@ -56,6 +73,44 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
         mSubjectAdapter = new MainSubjectAdapter();
         mSubjectAdapter.setListener(this);
         rvMainSubjects.setAdapter(mSubjectAdapter);
+    }
+
+    private void initToolbar() {
+        toolBar.setTitle("");
+        setSupportActionBar(toolBar);
+
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+
+    private void initDrawer() {
+        nvMainNavigation.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+
+                        switch (menuItem.getItemId()){
+                            case R.id.action_user_center:
+                                startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
+                                return true;
+                            case R.id.action_app_update:
+                                Snackbar.make(srlMainSubjects, "您的应用已经是最新版", Snackbar.LENGTH_SHORT).show();
+                                return true;
+                            case R.id.action_about_us:
+                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                                return true;
+                            case R.id.action_app_exit:
+                                dlMainDrawer.closeDrawers();
+                                finish();
+                                return true;
+                        }
+                        return true;
+                    }
+                });
     }
 
     @Override
@@ -70,10 +125,39 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
         getPresenter().onRecyclerRefresh();
     }
 
+
     @Override
     public void onRefresh() {
         getPresenter().onRecyclerRefresh();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                dlMainDrawer.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (dlMainDrawer.isDrawerOpen(GravityCompat.START)){
+            dlMainDrawer.closeDrawer(GravityCompat.START);
+        } else if ((System.currentTimeMillis() - exitTime) > 2000){
+            Snackbar.make(srlMainSubjects, "再按一次退出程序", Snackbar.LENGTH_SHORT).setAction("退出", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.super.onBackPressed();
+                }
+            }).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     public void showData(List<Subject> data) {
@@ -103,4 +187,7 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
     public void goExamPaperView() {
         startActivity(new Intent(this, ExamPaperActivity.class));
     }
+
+
+
 }

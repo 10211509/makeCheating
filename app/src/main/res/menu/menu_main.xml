@@ -7,34 +7,40 @@
             android:title="@string/action_settings"
             app:showAsAction="never" />-->
 
+<!--
     <item
         android:id="@+id/action_go_main"
         android:orderInCategory="21"
         android:title="@string/action_go_main"
         app:showAsAction="never" />
+-->
 
 
     <item
         android:id="@+id/action_user_center"
         android:orderInCategory="31"
+        android:icon="@drawable/ic_action_account"
         android:title="@string/action_user_center"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_app_update"
         android:orderInCategory="32"
+        android:icon="@drawable/ic_action_system_update"
         android:title="@string/action_app_update"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_about_us"
         android:orderInCategory="33"
+        android:icon="@drawable/ic_action_info"
         android:title="@string/action_about_us"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_app_exit"
         android:orderInCategory="41"
+        android:icon="@drawable/ic_action_exit_to_app"
         android:title="@string/action_app_exit"
         app:showAsAction="never" />
 </menu>

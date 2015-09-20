@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import nobugs.team.cheating.R;
-import nobugs.team.cheating.mvp.model.Question;
+import nobugs.team.cheating.model.Question;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
@@ -19,19 +19,21 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 public class QuestionListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
     private List<Question> questions;
     private Context context;
-    public QuestionListAdapter(Context context,List<Question> questions){
+
+    public QuestionListAdapter(Context context, List<Question> questions) {
         this.context = context;
         this.questions = questions;
     }
+
     @Override
     public View getHeaderView(int i, View view, ViewGroup viewGroup) {
         HeaderViewHolder headerViewHolder;
-        if(view == null){
+        if (view == null) {
             headerViewHolder = new HeaderViewHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.item_exampaper_question_header,null);
+            view = LayoutInflater.from(context).inflate(R.layout.item_exampaper_question_header, null);
             headerViewHolder.tvQuestionHeader = (TextView) view.findViewById(R.id.tv_question_header);
             view.setTag(headerViewHolder);
-        }else{
+        } else {
             headerViewHolder = (HeaderViewHolder) view.getTag();
         }
         headerViewHolder.tvQuestionHeader.setText("第x部分");
@@ -61,12 +63,12 @@ public class QuestionListAdapter extends BaseAdapter implements StickyListHeader
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        if(convertView == null){
+        if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_exampaper_question,null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_exampaper_question, null);
             viewHolder.tvQuestionIndex = (TextView) convertView.findViewById(R.id.tv_question_index);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 //        CharSequence content =
@@ -74,10 +76,11 @@ public class QuestionListAdapter extends BaseAdapter implements StickyListHeader
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         public TextView tvQuestionIndex;
     }
-    class HeaderViewHolder{
+
+    class HeaderViewHolder {
         public TextView tvQuestionHeader;
     }
 }

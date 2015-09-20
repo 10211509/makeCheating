@@ -1,16 +1,53 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MyAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!-- customize the color palette -->
         <item name="colorPrimary">@color/material_blue_500</item>
         <item name="colorPrimaryDark">@color/material_blue_700</item>
         <item name="colorAccent">@color/material_green_A200</item>
-
+        <item name="stickyListHeadersListViewStyle">@style/ListViewStyle</item>
+<!--        <item name="android:textColorSecondary">@android:color/white</item>-->
     </style>
 
-    <style name="MyAppTheme" parent="MyAppBaseTheme">
+    <style name="AppTheme" parent="AppBaseTheme">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="CardView.Main">
+        <item name="cardBackgroundColor">#CCCC33</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">10dp</item>
+        <item name="cardUseCompatPadding">false</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="CardView.Main.Custom" />
+
+    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ToolBarStyle.Menu">
+        <item name="navigationIcon">@drawable/ic_action_toc</item>
+    </style>
+
+    <style name="ToolBarStyle.Back">
+        <item name="navigationIcon">@drawable/ic_action_arrow_back</item>
+    </style>
+
+    <style name="TextToolbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ListViewStyle" parent="Widget.AppCompat.ListView">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
     </style>
 </resources>

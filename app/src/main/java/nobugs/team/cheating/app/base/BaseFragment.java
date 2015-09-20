@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import nobugs.team.cheating.mvp.presenter.IPresenter;
+import nobugs.team.cheating.presenter.base.IPresenter;
 
 /**
  * Created by Administrator on 2015/8/16 0016.

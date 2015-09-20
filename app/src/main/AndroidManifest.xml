@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nobugs.team.cheating" >
+    package="nobugs.team.cheating">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <!--
@@ -18,17 +18,16 @@
     <application
         android:name=".app.base.MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MyAppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".ui.activity.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,16 +36,16 @@
         </activity>
         <activity
             android:name=".ui.activity.ExamPaperActivity"
-            android:label="@string/title_activity_exam_paper"
-            android:parentActivityName=".app.base.BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="nobugs.team.cheating.app.base.BaseActivity" />
-        </activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.ExamDetailsActivity"
-            android:label="@string/title_activity_exam_details" >
-        </activity>
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.activity.UserInfoActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
