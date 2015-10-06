@@ -9,6 +9,7 @@
     <string name="action_app_update">软件升级</string>
     <string name="action_app_exit">退出软件</string>
     <string name="action_about_us">关于我们</string>
+    <string name="action_unbind">解除绑定</string>
     <string name="title_activity_exam_paper">ExamPaperActivity</string>
     <string name="title_activity_exam_details">ExamDetailsActivity</string>
 </resources>

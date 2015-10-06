@@ -14,20 +14,24 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.avast.android.dialogs.fragment.SimpleDialogFragment;
+import com.avast.android.dialogs.iface.ISimpleDialogListener;
+
 import java.util.List;
 
 import butterknife.Bind;
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
 import nobugs.team.cheating.model.Course;
-import nobugs.team.cheating.presenter.CoursePresenter;
-import nobugs.team.cheating.presenter.impl.CoursePresenterImpl;
+import nobugs.team.cheating.presenter.MainPresenter;
+import nobugs.team.cheating.presenter.impl.MainPresenterImpl;
 import nobugs.team.cheating.ui.adapter.CourseAdapter;
 
-public class CourseActivity extends BaseActivity<CoursePresenter> implements
-        CoursePresenter.View,
+public class MainActivity extends BaseActivity<MainPresenter> implements
+        MainPresenter.View,
         SwipeRefreshLayout.OnRefreshListener,
-        CourseAdapter.OnItemClickListener {
+        CourseAdapter.OnItemClickListener,
+        ISimpleDialogListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolBar;
@@ -44,8 +48,8 @@ public class CourseActivity extends BaseActivity<CoursePresenter> implements
     private long exitTime = 0;
 
     @Override
-    protected CoursePresenter initPresenter() {
-        return new CoursePresenterImpl(this);
+    protected MainPresenter initPresenter() {
+        return new MainPresenterImpl(this);
     }
 
     @Override
@@ -93,15 +97,23 @@ public class CourseActivity extends BaseActivity<CoursePresenter> implements
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
 
-                        switch (menuItem.getItemId()){
+                        switch (menuItem.getItemId()) {
                             case R.id.action_user_center:
-                                startActivity(new Intent(CourseActivity.this, UserActivity.class));
+                                startActivity(new Intent(MainActivity.this, UserActivity.class));
                                 return true;
                             case R.id.action_app_update:
                                 Snackbar.make(srlMainSubjects, "您的应用已经是最新版", Snackbar.LENGTH_SHORT).show();
                                 return true;
                             case R.id.action_about_us:
-                                startActivity(new Intent(CourseActivity.this, AboutActivity.class));
+                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                                return true;
+                            case R.id.action_unbind:
+                                SimpleDialogFragment.createBuilder(MainActivity.this, getSupportFragmentManager())
+                                        .setTitle("您确定要解除绑定吗？")
+                                        .setMessage("解除绑定后，您的授权码将与设备解绑，可被其他设备绑定")
+                                        .setPositiveButtonText("确定")
+                                        .setNegativeButtonText("取消")
+                                        .show();
                                 return true;
                             case R.id.action_app_exit:
                                 dlMainDrawer.closeDrawers();
@@ -143,13 +155,13 @@ public class CourseActivity extends BaseActivity<CoursePresenter> implements
 
     @Override
     public void onBackPressed() {
-        if (dlMainDrawer.isDrawerOpen(GravityCompat.START)){
+        if (dlMainDrawer.isDrawerOpen(GravityCompat.START)) {
             dlMainDrawer.closeDrawer(GravityCompat.START);
-        } else if ((System.currentTimeMillis() - exitTime) > 2000){
+        } else if ((System.currentTimeMillis() - exitTime) > 2000) {
             Snackbar.make(srlMainSubjects, "再按一次退出程序", Snackbar.LENGTH_SHORT).setAction("退出", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CourseActivity.super.onBackPressed();
+                    MainActivity.super.onBackPressed();
                 }
             }).show();
             exitTime = System.currentTimeMillis();
@@ -188,6 +200,25 @@ public class CourseActivity extends BaseActivity<CoursePresenter> implements
         startActivity(new Intent(this, ExamActivity.class));
     }
 
+    @Override
+    public void navigateToAuthView() {
+        startActivity(new Intent(MainActivity.this, AuthActivity.class));
+        finish();
+    }
 
 
+    @Override
+    public void onNegativeButtonClicked(int requestCode) {
+
+    }
+
+    @Override
+    public void onNeutralButtonClicked(int requestCode) {
+
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int requestCode) {
+        getPresenter().unbind();
+    }
 }

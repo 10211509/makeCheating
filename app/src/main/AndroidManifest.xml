@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.CourseActivity"
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.ExamActivity"

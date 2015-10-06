@@ -6,7 +6,7 @@ import nobugs.team.cheating.presenter.base.IPresenter;
 /**
  * Created by xiayong on 2015/9/13.
  */
-public interface UserInfoPresenter extends IPresenter {
+public interface UserPresenter extends IPresenter {
 
     interface View extends IPresenter.IView {
         void showUserInfo(User user);

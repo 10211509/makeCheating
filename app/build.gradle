@@ -39,7 +39,7 @@ dependencies {
 //    compile('com.afollestad.material-dialogs:core:0.8.1.0@aar') {
 //        transitive = true
 //    }
-    compile 'com.avast:android-styled-dialogs:2.2.0'
+    compile 'com.avast:android-styled-dialogs:2.2.0'    //https://github.com/avast/android-styled-dialogs
     compile 'com.tencent.bugly:crashreport:1.2.3.8'  //其中<version>替换为当前最新bugly版本号1.2.3.8
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.squareup.phrase:phrase:1.1.0'

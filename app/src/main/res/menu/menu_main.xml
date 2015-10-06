@@ -38,9 +38,16 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_unbind"
+        android:orderInCategory="34"
+        android:icon="@drawable/ic_action_exit_to_app"
+        android:title="@string/action_unbind"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_app_exit"
         android:orderInCategory="41"
-        android:icon="@drawable/ic_action_exit_to_app"
+        android:icon="@drawable/ic_action_exit"
         android:title="@string/action_app_exit"
         app:showAsAction="never" />
 </menu>

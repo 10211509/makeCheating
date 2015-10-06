@@ -19,6 +19,8 @@ public interface IPresenter extends LifeCycleCallback {
 
 
     interface IView {
+        void showToast(String content);
+
         void showLoadingDlg(String title, String content, boolean cancelled);
 
         void dismissAllDlg();

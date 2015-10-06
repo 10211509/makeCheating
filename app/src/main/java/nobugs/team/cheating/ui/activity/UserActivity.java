@@ -12,10 +12,10 @@ import butterknife.Bind;
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
 import nobugs.team.cheating.model.User;
-import nobugs.team.cheating.presenter.UserInfoPresenter;
+import nobugs.team.cheating.presenter.UserPresenter;
 import nobugs.team.cheating.presenter.impl.UserPresenterImpl;
 
-public class UserActivity extends BaseActivity<UserInfoPresenter> implements UserInfoPresenter.View {
+public class UserActivity extends BaseActivity<UserPresenter> implements UserPresenter.View {
 
 
     @Bind(R.id.toolbar)
@@ -34,7 +34,7 @@ public class UserActivity extends BaseActivity<UserInfoPresenter> implements Use
     TextView tvClass;
 
     @Override
-    protected UserInfoPresenter initPresenter() {
+    protected UserPresenter initPresenter() {
         return new UserPresenterImpl(this);
     }
 

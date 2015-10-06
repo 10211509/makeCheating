@@ -15,10 +15,10 @@ import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
 import nobugs.team.cheating.model.Exam;
 import nobugs.team.cheating.model.Question;
-import nobugs.team.cheating.presenter.QuestionDetailPresenter;
+import nobugs.team.cheating.presenter.QuestionPresenter;
 import nobugs.team.cheating.presenter.impl.QuestionPresenterImpl;
 
-public class QuestionActivity extends BaseActivity<QuestionDetailPresenter> implements QuestionDetailPresenter.View {
+public class QuestionActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View {
 
 
     @Bind(R.id.toolbar)
@@ -49,7 +49,7 @@ public class QuestionActivity extends BaseActivity<QuestionDetailPresenter> impl
     Button btnNextQuestion;
 
     @Override
-    protected QuestionDetailPresenter initPresenter() {
+    protected QuestionPresenter initPresenter() {
         return new QuestionPresenterImpl(this);
     }
 

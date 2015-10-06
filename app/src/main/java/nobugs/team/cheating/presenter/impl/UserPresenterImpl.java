@@ -1,6 +1,6 @@
 package nobugs.team.cheating.presenter.impl;
 
-import nobugs.team.cheating.presenter.UserInfoPresenter;
+import nobugs.team.cheating.presenter.UserPresenter;
 import nobugs.team.cheating.presenter.base.BasePresenter;
 import nobugs.team.cheating.repo.api.mapper.UserMapper;
 import nobugs.team.cheating.repo.api.model.RespUser;
@@ -14,7 +14,7 @@ import retrofit.Response;
 /**
  * Created by wangyf on 2015/9/21 0021.
  */
-public class UserPresenterImpl extends BasePresenter<UserInfoPresenter.View> implements UserInfoPresenter {
+public class UserPresenterImpl extends BasePresenter<UserPresenter.View> implements UserPresenter {
     public UserPresenterImpl(View mView) {
         super(mView);
     }

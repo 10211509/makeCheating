@@ -8,7 +8,7 @@ import de.greenrobot.event.EventBus;
 import nobugs.team.cheating.event.QuestionChooseEvent;
 import nobugs.team.cheating.model.Exam;
 import nobugs.team.cheating.model.Question;
-import nobugs.team.cheating.presenter.QuestionDetailPresenter;
+import nobugs.team.cheating.presenter.QuestionPresenter;
 import nobugs.team.cheating.presenter.base.BasePresenter;
 import nobugs.team.cheating.repo.api.mapper.QuestionMapper;
 import nobugs.team.cheating.repo.api.model.RespQuestion;
@@ -22,7 +22,7 @@ import retrofit.Response;
 /**
  * Created by xiayong on 2015/9/15.
  */
-public class QuestionPresenterImpl extends BasePresenter<QuestionDetailPresenter.View> implements QuestionDetailPresenter {
+public class QuestionPresenterImpl extends BasePresenter<QuestionPresenter.View> implements QuestionPresenter {
     private List<Question> mQuestions;
     private int mCurIndex = -1;
     private Exam mExam;

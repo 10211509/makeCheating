@@ -52,7 +52,7 @@ public class AuthActivity extends BaseActivity<AuthPresenter> implements AuthPre
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-        edtAuthCode.setText("4201509252C6EA2ABB840");
+//        edtAuthCode.setText("4201509252C6EA2ABB840");
 
         edtAuthCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,7 +111,7 @@ public class AuthActivity extends BaseActivity<AuthPresenter> implements AuthPre
         dismissAllDlg();
         if (success) {
             Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(AuthActivity.this, CourseActivity.class));
+            startActivity(new Intent(AuthActivity.this, MainActivity.class));
             finish();
         } else if (!TextUtils.isEmpty(errMsg)) {
             Toast.makeText(this, errMsg, Toast.LENGTH_SHORT).show();

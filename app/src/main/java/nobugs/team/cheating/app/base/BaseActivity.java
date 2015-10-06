@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.avast.android.dialogs.fragment.ProgressDialogFragment;
 import com.avast.android.dialogs.fragment.SimpleDialogFragment;
@@ -15,7 +16,7 @@ import nobugs.team.cheating.presenter.base.IPresenter;
  * Created by xiayong on 2015/8/7.
  */
 
-public abstract class BaseActivity<PresenterType extends IPresenter> extends AppCompatActivity implements IPresenter.IView{
+public abstract class BaseActivity<PresenterType extends IPresenter> extends AppCompatActivity implements IPresenter.IView {
 
     private static final String TAG_DLG = "dialog";
 
@@ -150,11 +151,16 @@ public abstract class BaseActivity<PresenterType extends IPresenter> extends App
     }
 
     @Override
-    public void dismissAllDlg(){
-        for(Fragment frag : getSupportFragmentManager().getFragments()){
-            if (frag instanceof DialogFragment){
-                ((DialogFragment)frag).dismissAllowingStateLoss();
+    public void dismissAllDlg() {
+        for (Fragment frag : getSupportFragmentManager().getFragments()) {
+            if (frag instanceof DialogFragment) {
+                ((DialogFragment) frag).dismissAllowingStateLoss();
             }
         }
+    }
+
+    @Override
+    public void showToast(String content) {
+        Toast.makeText(BaseActivity.this, content, Toast.LENGTH_SHORT).show();
     }
 }

@@ -17,12 +17,12 @@ import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
 import nobugs.team.cheating.model.Exam;
 import nobugs.team.cheating.model.Question;
-import nobugs.team.cheating.presenter.QuestionPresenter;
+import nobugs.team.cheating.presenter.ExamPresenter;
 import nobugs.team.cheating.presenter.impl.ExamPresenterImpl;
 import nobugs.team.cheating.ui.adapter.QuestionAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class ExamActivity extends BaseActivity<QuestionPresenter> implements QuestionPresenter.View, AdapterView.OnItemClickListener {
+public class ExamActivity extends BaseActivity<ExamPresenter> implements ExamPresenter.View, AdapterView.OnItemClickListener {
 
     @Bind(R.id.tv_subject)
     TextView tvSubject;
@@ -38,7 +38,7 @@ public class ExamActivity extends BaseActivity<QuestionPresenter> implements Que
     TextView tvExamTitle;
 
     @Override
-    protected QuestionPresenter initPresenter() {
+    protected ExamPresenter initPresenter() {
         return new ExamPresenterImpl(this);
     }
 
