@@ -16,11 +16,11 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 /**
  * Created by xiayong on 2015/9/14.
  */
-public class QuestionListAdapter extends BaseAdapter implements StickyListHeadersAdapter {
+public class QuestionAdapter extends BaseAdapter implements StickyListHeadersAdapter {
     private List<Question> questions;
     private Context context;
 
-    public QuestionListAdapter(Context context, List<Question> questions) {
+    public QuestionAdapter(Context context, List<Question> questions) {
         this.context = context;
         this.questions = questions;
     }
@@ -36,7 +36,7 @@ public class QuestionListAdapter extends BaseAdapter implements StickyListHeader
         } else {
             headerViewHolder = (HeaderViewHolder) view.getTag();
         }
-        headerViewHolder.tvQuestionHeader.setText("第x部分");
+        headerViewHolder.tvQuestionHeader.setText(String.format("第%d部分", questions.get(i).getSection()));
         return view;
     }
 
@@ -72,7 +72,7 @@ public class QuestionListAdapter extends BaseAdapter implements StickyListHeader
             viewHolder = (ViewHolder) convertView.getTag();
         }
 //        CharSequence content =
-        viewHolder.tvQuestionIndex.setText("第x题");
+        viewHolder.tvQuestionIndex.setText(String.format("第%d题", questions.get(position).getSn()));
         return convertView;
     }
 

@@ -19,15 +19,15 @@ import java.util.List;
 import butterknife.Bind;
 import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
-import nobugs.team.cheating.model.Subject;
-import nobugs.team.cheating.presenter.SubjectPresenter;
-import nobugs.team.cheating.presenter.impl.SubjectPresenterImpl;
-import nobugs.team.cheating.ui.adapter.MainSubjectAdapter;
+import nobugs.team.cheating.model.Course;
+import nobugs.team.cheating.presenter.CoursePresenter;
+import nobugs.team.cheating.presenter.impl.CoursePresenterImpl;
+import nobugs.team.cheating.ui.adapter.CourseAdapter;
 
-public class MainActivity extends BaseActivity<SubjectPresenter> implements
-        SubjectPresenter.View,
+public class CourseActivity extends BaseActivity<CoursePresenter> implements
+        CoursePresenter.View,
         SwipeRefreshLayout.OnRefreshListener,
-        MainSubjectAdapter.OnItemClickListener {
+        CourseAdapter.OnItemClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolBar;
@@ -40,12 +40,12 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
     @Bind(R.id.dl_main_drawer)
     DrawerLayout dlMainDrawer;
 
-    private MainSubjectAdapter mSubjectAdapter;
+    private CourseAdapter mSubjectAdapter;
     private long exitTime = 0;
 
     @Override
-    protected SubjectPresenter initPresenter() {
-        return new SubjectPresenterImpl(this);
+    protected CoursePresenter initPresenter() {
+        return new CoursePresenterImpl(this);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
         GridLayoutManager mgr = new GridLayoutManager(this, 2);
         rvMainSubjects.setLayoutManager(mgr);
 
-        mSubjectAdapter = new MainSubjectAdapter();
+        mSubjectAdapter = new CourseAdapter();
         mSubjectAdapter.setListener(this);
         rvMainSubjects.setAdapter(mSubjectAdapter);
     }
@@ -95,13 +95,13 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
 
                         switch (menuItem.getItemId()){
                             case R.id.action_user_center:
-                                startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
+                                startActivity(new Intent(CourseActivity.this, UserActivity.class));
                                 return true;
                             case R.id.action_app_update:
                                 Snackbar.make(srlMainSubjects, "您的应用已经是最新版", Snackbar.LENGTH_SHORT).show();
                                 return true;
                             case R.id.action_about_us:
-                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                                startActivity(new Intent(CourseActivity.this, AboutActivity.class));
                                 return true;
                             case R.id.action_app_exit:
                                 dlMainDrawer.closeDrawers();
@@ -149,7 +149,7 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
             Snackbar.make(srlMainSubjects, "再按一次退出程序", Snackbar.LENGTH_SHORT).setAction("退出", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.super.onBackPressed();
+                    CourseActivity.super.onBackPressed();
                 }
             }).show();
             exitTime = System.currentTimeMillis();
@@ -160,10 +160,10 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
 
 
     @Override
-    public void showData(List<Subject> data) {
+    public void showData(List<Course> data) {
         srlMainSubjects.setRefreshing(false);
 
-        mSubjectAdapter.setSubjects(data);
+        mSubjectAdapter.setCourses(data);
         mSubjectAdapter.notifyDataSetChanged();
     }
 
@@ -178,14 +178,14 @@ public class MainActivity extends BaseActivity<SubjectPresenter> implements
     }
 
     @Override
-    public void onItemClick(int index, Subject subject) {
+    public void onItemClick(int index, Course subject) {
         getPresenter().onChooseSubject(subject);
     }
 
 
     @Override
     public void goExamPaperView() {
-        startActivity(new Intent(this, ExamPaperActivity.class));
+        startActivity(new Intent(this, ExamActivity.class));
     }
 
 

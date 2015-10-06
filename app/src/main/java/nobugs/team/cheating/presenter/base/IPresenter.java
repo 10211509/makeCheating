@@ -19,5 +19,12 @@ public interface IPresenter extends LifeCycleCallback {
 
 
     interface IView {
+        void showLoadingDlg(String title, String content, boolean cancelled);
+
+        void dismissAllDlg();
+
+        void showDlg(String title, String content);
+
+        void showErrorDlg(String title, String error);
     }
 }

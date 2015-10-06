@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="material_blue_500">#009688</color>
-    <color name="material_blue_700">#00796B</color>
-    <color name="material_green_A200">#FD87A9</color>
+    <color name="material_green_500">#009688</color>
+    <color name="material_green_700">#00796B</color>
+    <color name="material_pink_A200">#FD87A9</color>
+    <color name="material_blue">#54B0DC</color>
+
+    <color name="course_stat_wait">#FED833</color>
+    <color name="course_stat_ready">#60C55B</color>
+    <color name="course_stat_locked">#cbea4c46</color>
+
+
 </resources>

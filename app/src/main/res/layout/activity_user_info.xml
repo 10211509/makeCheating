@@ -44,7 +44,6 @@
             android:id="@+id/tv_auth_flag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已授权"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -52,14 +51,16 @@
             android:layout_height="wrap_content"
             android:text="有效期限："
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_auth_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2015年9月-2015年12月"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,7 +73,19 @@
             android:id="@+id/tv_major"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="会计专科"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您的班次："
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -86,7 +99,6 @@
             android:id="@+id/tv_course"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="会计，英语，数学，语文，历史，政治，电算化"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </android.support.v7.widget.GridLayout>

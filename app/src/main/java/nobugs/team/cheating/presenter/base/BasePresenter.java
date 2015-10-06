@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * Autor: wangyf on 2015/8/15 0015 20:45
@@ -12,28 +14,28 @@ import android.support.v4.app.FragmentActivity;
  */
 public class BasePresenter<T extends IPresenter.IView> implements IPresenter {
 
-    private T mView;
+    private WeakReference<T> mViewRef;
 
     public void setView(T view) {
-        this.mView = view;
+        this.mViewRef = new WeakReference<>(view);
     }
 
     public T getView() {
-        return mView;
+        return mViewRef.get();
     }
 
-    public BasePresenter(T mView) {
-        this.mView = mView;
+    public BasePresenter(T view) {
+        setView(view);
     }
 
     @Override
     public Context getContext() {
-        if (mView instanceof FragmentActivity) {
-            return (FragmentActivity) mView;
-        } else if (mView instanceof Fragment) {
-            return ((Fragment) mView).getActivity();
+        if (getView() instanceof FragmentActivity) {
+            return (FragmentActivity) getView();
+        } else if (getView() instanceof Fragment) {
+            return ((Fragment) getView()).getActivity();
         }
-        throw new IllegalArgumentException("mView must be FragmentActivity or Fragment");
+        throw new IllegalArgumentException("mViewRef must be FragmentActivity or Fragment");
     }
 
     @Override
@@ -43,8 +45,8 @@ public class BasePresenter<T extends IPresenter.IView> implements IPresenter {
 
     @Override
     public Fragment getFragment() {
-        if (mView instanceof Fragment) {
-            return (Fragment) mView;
+        if (getView() instanceof Fragment) {
+            return (Fragment) getView();
         }
         return null;
     }

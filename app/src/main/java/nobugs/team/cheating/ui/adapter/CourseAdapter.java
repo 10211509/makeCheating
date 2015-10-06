@@ -3,6 +3,7 @@ package nobugs.team.cheating.ui.adapter;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -19,24 +20,26 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import nobugs.team.cheating.R;
-import nobugs.team.cheating.model.Subject;
+import nobugs.team.cheating.model.Course;
 
 /**
  * Created by wangyf on 2015/9/13 0013.
  */
-public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.ViewHolder> {
+public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
-    private List<Subject> subjects = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     private OnItemClickListener listener;
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        if (subjects != null) {
-            this.subjects = subjects;
+    private Context context;
+
+    public void setCourses(List<Course> courses) {
+        if (courses != null) {
+            this.courses = courses;
         }
     }
 
@@ -52,28 +55,30 @@ public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_subjects, parent, false);
+        context = parent.getContext();
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.updateView(subjects.get(position));
-        holder.setCardClickListener(position, subjects.get(position));
+        holder.updateView(courses.get(position));
+        holder.setCardClickListener(position, courses.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return subjects.size();
+        return courses.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.tv_subject_name)
-        TextView tvSubjectName;
-        @Bind(R.id.tv_subject_time)
-        TextView tvSubjectTime;
-        @Bind(R.id.card_subject)
-        CardView cardSubject;
+        @Bind(R.id.tv_name)
+        TextView tvCourseName;
+        @Bind(R.id.tv_exam_time)
+        TextView tvCourseTime;
+        @Bind(R.id.card_course)
+        CardView cardCourse;
 
         float cardElevation;
 
@@ -81,18 +86,30 @@ public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.
             super(itemView);
 
             ButterKnife.bind(this, itemView);
-            cardElevation = cardSubject.getCardElevation();
+            cardElevation = cardCourse.getCardElevation();
         }
 
-        public void updateView(Subject subject) {
-            if (subject != null) {
-                tvSubjectName.setText(subject.getName());
-                tvSubjectTime.setText(subject.getTime());
+        public void updateView(Course course) {
+            if (course != null) {
+                tvCourseName.setText(course.getName());
+                tvCourseTime.setText(course.getTime());
+                switch (course.getStatus()){
+                    case WAIT:
+                        cardCourse.setCardBackgroundColor(context.getResources().getColor(R.color.course_stat_wait));
+                        break;
+                    case READY:
+                        cardCourse.setCardBackgroundColor(context.getResources().getColor(R.color.course_stat_ready));
+                        break;
+                    case LOCKED:
+                        cardCourse.setCardBackgroundColor(context.getResources().getColor(R.color.course_stat_locked));
+                        break;
+                }
+
             }
         }
 
-        public void setCardClickListener(final int position, final Subject subject) {
-            cardSubject.setOnTouchListener(new View.OnTouchListener() {
+        public void setCardClickListener(final int position, final Course subject) {
+            cardCourse.setOnTouchListener(new View.OnTouchListener() {
                 public ObjectAnimator animatorPress;
                 public ObjectAnimator animatorUnPress;
 
@@ -106,7 +123,7 @@ public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.
                         case MotionEvent.ACTION_DOWN:
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                                 if (animatorPress == null || !animatorPress.isRunning()) {
-                                    animatorPress = ObjectAnimator.ofFloat(cardSubject, "cardElevation", cardElevation, 0);
+                                    animatorPress = ObjectAnimator.ofFloat(cardCourse, "cardElevation", cardElevation, 0);
                                     animatorPress.start();
                                 }
                             }
@@ -117,16 +134,16 @@ public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.
                                 if (animatorPress != null && animatorPress.isRunning()) {
                                     animatorPress.end();
                                 }
-                                animatorUnPress = ObjectAnimator.ofFloat(cardSubject, "cardElevation", 0, cardElevation);
+                                animatorUnPress = ObjectAnimator.ofFloat(cardCourse, "cardElevation", 0, cardElevation);
                                 animatorUnPress.addListener(new AnimatorListenerAdapter() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
-                                        cardSubject.setEnabled(false);
+                                        cardCourse.setEnabled(false);
                                     }
 
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
-                                        cardSubject.setEnabled(true);
+                                        cardCourse.setEnabled(true);
                                         if (listener != null && action == MotionEvent.ACTION_UP) {
                                             listener.onItemClick(position, subject);
                                         }
@@ -143,6 +160,6 @@ public class MainSubjectAdapter extends RecyclerView.Adapter<MainSubjectAdapter.
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int index, Subject subject);
+        void onItemClick(int index, Course subject);
     }
 }

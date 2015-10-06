@@ -16,6 +16,6 @@ public interface AuthPresenter extends IPresenter {
     void submitAuthCode(String authCode);
 
     interface View extends IView {
-        void showAuthResult(boolean success, int errType);
+        void showAuthResult(boolean success, int errType, String errMsg);
     }
 }

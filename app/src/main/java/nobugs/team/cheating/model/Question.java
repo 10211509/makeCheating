@@ -4,10 +4,12 @@ package nobugs.team.cheating.model;
  * Created by xiayong on 2015/9/13.
  */
 public class Question {
+    private int id;
     private String title;
     private String type;
     private String answer;
     private int section;
+    private int sn;
 
     public String getTitle() {
         return title;
@@ -39,5 +41,21 @@ public class Question {
 
     public void setSection(int section) {
         this.section = section;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getSn() {
+        return sn;
+    }
+
+    public void setSn(int sn) {
+        this.sn = sn;
     }
 }

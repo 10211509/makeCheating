@@ -29,13 +29,20 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.zhy:percent-support-extends:1.0.6'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.afollestad:material-dialogs:0.7.8.1'
+//    compile 'com.afollestad:material-dialogs:0.7.8.1'
+//    compile 'com.bigkoo:svprogresshud:1.0.0'
+//    compile('com.afollestad.material-dialogs:core:0.8.1.0@aar') {
+//        transitive = true
+//    }
+    compile 'com.avast:android-styled-dialogs:2.2.0'
     compile 'com.tencent.bugly:crashreport:1.2.3.8'  //其中<version>替换为当前最新bugly版本号1.2.3.8
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
-//    compile 'com.squareup.phrase:phrase:1.1.0'
+    compile 'com.squareup.phrase:phrase:1.1.0'
 }
 
 

@@ -13,9 +13,9 @@ import nobugs.team.cheating.R;
 import nobugs.team.cheating.app.base.BaseActivity;
 import nobugs.team.cheating.model.User;
 import nobugs.team.cheating.presenter.UserInfoPresenter;
-import nobugs.team.cheating.presenter.impl.UserInfoPresenterImpl;
+import nobugs.team.cheating.presenter.impl.UserPresenterImpl;
 
-public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements UserInfoPresenter.View {
+public class UserActivity extends BaseActivity<UserInfoPresenter> implements UserInfoPresenter.View {
 
 
     @Bind(R.id.toolbar)
@@ -30,10 +30,12 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
     TextView tvMajor;
     @Bind(R.id.tv_course)
     TextView tvCourse;
+    @Bind(R.id.tv_class)
+    TextView tvClass;
 
     @Override
     protected UserInfoPresenter initPresenter() {
-        return new UserInfoPresenterImpl(this);
+        return new UserPresenterImpl(this);
     }
 
     @Override
@@ -74,17 +76,24 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         if (!TextUtils.isEmpty(user.getSubject())) {
             tvMajor.setText(user.getSubject());
         }
-        int csize = user.getCourse().size();
-        if (user.getCourse() != null &&  csize> 0) {
+        if (!TextUtils.isEmpty(user.getClassName())) {
+            tvClass.setText(user.getClassName());
+        }
+//        if (!TextUtils.isEmpty(user.getCourses())) {
+//            tvCourse.setText(user.getCourses());
+//        }
+        int csize = user.getCourses().size();
+        if (user.getCourses() != null && csize > 0) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < csize; i++) {
-                sb.append(user.getCourse().get(i));
-                if (i < csize){
-                    sb.append(",");
+                sb.append(user.getCourses().get(i));
+                if (i < csize - 1) {
+                    sb.append(",\n");
                 }
             }
             tvCourse.setText(sb.toString());
         }
 
     }
+
 }

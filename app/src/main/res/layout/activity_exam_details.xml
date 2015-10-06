@@ -34,11 +34,11 @@
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_question_index"
+        android:layout_below="@id/tv_question_index"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        app:useDefaultMargins="true"
-        app:columnCount="2">
+        app:columnCount="2"
+        app:useDefaultMargins="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,19 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="第{x}部分"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="试题题目:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/tv_question_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="略"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -82,6 +69,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="试题题目:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tv_question_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_columnSpan="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="试题答案:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -89,8 +90,8 @@
             android:id="@+id/tv_answer_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_columnSpan="2"/>
     </android.support.v7.widget.GridLayout>
 
     <LinearLayout
@@ -98,8 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_marginBottom="20dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button

@@ -11,7 +11,8 @@ public class User {
     private String name;
     private String avatarUrl;
     private String subject;
-    private List<String> course;
+    private String className;
+    private List<String> courses;
 
     public User() {
     }
@@ -22,7 +23,7 @@ public class User {
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.subject = subject;
-        this.course = course;
+        this.courses = course;
     }
 
     public boolean isAuth() {
@@ -65,11 +66,19 @@ public class User {
         this.subject = subject;
     }
 
-    public List<String> getCourse() {
-        return course;
+    public List<String> getCourses() {
+        return courses;
     }
 
-    public void setCourse(List<String> course) {
-        this.course = course;
+    public void setCourses(List<String> courses) {
+        this.courses = courses;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

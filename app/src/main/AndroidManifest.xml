@@ -26,8 +26,7 @@
             android:name=".ui.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".ui.activity.AuthActivity"
-            android:launchMode="singleTask">
+            android:name=".ui.activity.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,16 +34,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.CourseActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ui.activity.ExamPaperActivity"
+            android:name=".ui.activity.ExamActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.activity.QuestionActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".ui.activity.ExamDetailsActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".ui.activity.UserInfoActivity"
+            android:name=".ui.activity.UserActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.AboutActivity"

@@ -1,7 +1,12 @@
 package nobugs.team.cheating.app.base;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+
+import com.avast.android.dialogs.fragment.ProgressDialogFragment;
+import com.avast.android.dialogs.fragment.SimpleDialogFragment;
 
 import butterknife.ButterKnife;
 import nobugs.team.cheating.presenter.base.IPresenter;
@@ -10,7 +15,9 @@ import nobugs.team.cheating.presenter.base.IPresenter;
  * Created by xiayong on 2015/8/7.
  */
 
-public abstract class BaseActivity<PresenterType extends IPresenter> extends AppCompatActivity {
+public abstract class BaseActivity<PresenterType extends IPresenter> extends AppCompatActivity implements IPresenter.IView{
+
+    private static final String TAG_DLG = "dialog";
 
     private PresenterType mPresenter;
 
@@ -40,7 +47,6 @@ public abstract class BaseActivity<PresenterType extends IPresenter> extends App
             mPresenter.onCreate();
         }
     }
-
 
 
     @Override
@@ -116,4 +122,39 @@ public abstract class BaseActivity<PresenterType extends IPresenter> extends App
     protected void updateData() {
     }
 
+    @Override
+    public void showLoadingDlg(String title, String content, boolean cancelled) {
+        ProgressDialogFragment.createBuilder(this, getSupportFragmentManager())
+                .setMessage(content)
+                .setTitle(title)
+                .setCancelable(cancelled)
+                .setCancelableOnTouchOutside(cancelled)
+                .show();
+    }
+
+    @Override
+    public void showDlg(String title, String content) {
+        SimpleDialogFragment.createBuilder(this, getSupportFragmentManager())
+                .setTitle(title)
+                .setMessage(content)
+                .show();
+
+    }
+
+    @Override
+    public void showErrorDlg(String title, String error) {
+        SimpleDialogFragment.createBuilder(this, getSupportFragmentManager())
+                .setTitle(title)
+                .setMessage(error)
+                .show();
+    }
+
+    @Override
+    public void dismissAllDlg(){
+        for(Fragment frag : getSupportFragmentManager().getFragments()){
+            if (frag instanceof DialogFragment){
+                ((DialogFragment)frag).dismissAllowingStateLoss();
+            }
+        }
+    }
 }
