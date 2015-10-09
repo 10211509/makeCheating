@@ -5,9 +5,12 @@
     <color name="material_pink_A200">#FD87A9</color>
     <color name="material_blue">#54B0DC</color>
 
-    <color name="course_stat_wait">#FED833</color>
-    <color name="course_stat_ready">#60C55B</color>
-    <color name="course_stat_locked">#cbea4c46</color>
+    <color name="course_stat_wait_normal">#FED833</color>
+    <color name="course_stat_wait_pressed">#b09e51</color>
+    <color name="course_stat_ready_normal">#60C55B</color>
+    <color name="course_stat_ready_pressed">#4b8848</color>
+    <color name="course_stat_locked_normal">#fe6862</color>
+    <color name="course_stat_locked_pressed">#cf4944</color>
 
 
 </resources>

@@ -100,10 +100,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="percent-support-extends-1.0.6" level="project" />
     <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
-    <orderEntry type="library" exported="" name="converter-gson-2.0.0-beta1" level="project" />
     <orderEntry type="library" exported="" name="eventbus-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="retrofit-2.0.0-beta1" level="project" />
+    <orderEntry type="library" exported="" name="converter-gson-2.0.0-beta1" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="retrofit-2.0.0-beta1" level="project" />
     <orderEntry type="library" exported="" name="stickylistheaders-2.7.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />

@@ -30,12 +30,12 @@
         android:title="@string/action_app_update"
         app:showAsAction="never" />
 
-    <item
+<!--    <item
         android:id="@+id/action_about_us"
         android:orderInCategory="33"
         android:icon="@drawable/ic_action_info"
         android:title="@string/action_about_us"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
 
     <item
         android:id="@+id/action_unbind"

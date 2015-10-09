@@ -47,15 +47,26 @@ public class MainPresenterImpl extends BasePresenter<MainPresenter.View> impleme
     }
 
     @Override
-    public void onChooseSubject(Course subject) {
-        EventBus.getDefault().postSticky(new CourseChooseEvent(subject));
+    public void onChooseSubject(Course course) {
+        switch (course.getStatus()) {
+            case WAIT:
+                getView().showToast("该试卷尚未准备好，请稍后刷新再试");
+                break;
+            case LOCKED:
+                getView().showToast("该试卷已锁定");
+                break;
+            case READY:
+                EventBus.getDefault().postSticky(new CourseChooseEvent(course));
+                getView().goExamPaperView();
+                break;
+        }
 
-        getView().goExamPaperView();
     }
 
     @Override
     public void unbind() {
         getView().showLoadingDlg(null, "解绑中，请稍后...", true);
+
         final Call<RespBase> call = RestClient.getApiService().unAuth(SpHelper.get(SpKeys.TOKEN, ""));
         call.enqueue(new retrofit.Callback<RespBase>() {
             @Override

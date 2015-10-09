@@ -104,9 +104,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements
                             case R.id.action_app_update:
                                 Snackbar.make(srlMainSubjects, "您的应用已经是最新版", Snackbar.LENGTH_SHORT).show();
                                 return true;
-                            case R.id.action_about_us:
-                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
-                                return true;
+//                            case R.id.action_about_us:
+//                                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+//                                return true;
                             case R.id.action_unbind:
                                 SimpleDialogFragment.createBuilder(MainActivity.this, getSupportFragmentManager())
                                         .setTitle("您确定要解除绑定吗？")

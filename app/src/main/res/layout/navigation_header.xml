@@ -14,13 +14,13 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/ic_avatar"/>
 
-    <TextView
+<!--    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Hello"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"/>
+        android:textSize="20sp"/>-->
 
 </LinearLayout>
