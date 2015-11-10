@@ -22,7 +22,7 @@
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_app_name"
@@ -31,7 +31,7 @@
         android:layout_below="@id/iv_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="考试无忧"
+        android:text="@string/app_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/black" />
 

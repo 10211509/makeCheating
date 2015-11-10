@@ -23,6 +23,7 @@ public class LoginApiImpl implements LoginApi {
                     if (response.body().getMessage() == 200) {
 
                         String token = response.body().getToken();
+
                         //储存token
                         SpHelper.put(SpKeys.TOKEN, token);
                         SpHelper.put(SpKeys.AUTH_CODE, authCode);

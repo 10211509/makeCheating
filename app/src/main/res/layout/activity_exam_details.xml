@@ -47,9 +47,10 @@
 
         <TextView
             android:id="@+id/tv_section_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+<!--
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content"
             android:text="选择题"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
             android:id="@+id/tv_question_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:singleLine="false"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_columnSpan="2" />
@@ -88,6 +91,7 @@
             android:id="@+id/tv_answer_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:layout_columnSpan="2"/>
     </android.support.v7.widget.GridLayout>

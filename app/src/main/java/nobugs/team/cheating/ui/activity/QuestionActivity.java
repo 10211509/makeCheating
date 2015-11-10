@@ -37,8 +37,8 @@ public class QuestionActivity extends BaseActivity<QuestionPresenter> implements
     TextView tvSectionValue;
     @Bind(R.id.tv_question_value)
     TextView tvQuestionValue;
-    @Bind(R.id.tv_type_value)
-    TextView tvTypeValue;
+//    @Bind(R.id.tv_type_value)
+//    TextView tvTypeValue;
     @Bind(R.id.tv_answer_value)
     TextView tvAnswerValue;
     @Bind(R.id.btn_pre_question)
